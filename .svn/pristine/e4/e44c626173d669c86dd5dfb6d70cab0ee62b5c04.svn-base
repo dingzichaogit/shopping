@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyxy.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.hyxy.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="power" jdbcType="INTEGER" property="power" />
+    <result column="bank" jdbcType="VARCHAR" property="bank" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hyxy.entity.User">
+    insert into user (id, username, password, 
+      power, bank)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{power,jdbcType=INTEGER}, #{bank,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hyxy.entity.User">
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      power = #{power,jdbcType=INTEGER},
+      bank = #{bank,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, username, password, power, bank
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, username, password, power, bank
+    from user
+  </select>
+ 
+  
+  <select id="selectUser" resultType="com.hyxy.entity.User">
+  select * from user where username=#{username} and password=#{password}
+  </select>
+  
+</mapper>

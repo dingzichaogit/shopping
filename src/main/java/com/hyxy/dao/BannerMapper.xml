@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyxy.dao.BannerMapper">
+   <insert id="insert" parameterType="com.hyxy.entity.Picture">
+    insert into picture (title, url, path, orders,starts)
+    values (#{title}, #{url},#{path}, #{orders},#{starts})
+  </insert>
+  <select id="select" resultType="com.hyxy.entity.Picture">
+    select * from picture
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from picture
+    where id = #{id}
+  </delete>
+  <select id="selectid" resultType="com.hyxy.entity.Picture">
+    select * from picture where id=#{id}
+  </select>
+   <update id="update" parameterType="com.hyxy.entity.Picture">
+    update picture set title = #{title},url = #{url}, orders=#{orders},starts = #{starts} where id = ${id}
+  </update>
+</mapper>

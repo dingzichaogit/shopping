@@ -1,0 +1,26 @@
+logging:
+  file:
+    max-size: 10MB
+  level:
+    com:
+      hyxy:
+        dao: debug
+    root: info
+  path: D:/dashuju/log
+server:
+  port: 8080
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: 123
+    url: 'jdbc:mysql://localhost:3306/student?serverTimezone=UTC&characterEncoding=utf-8  '
+    username: root
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  output:
+    ansi:
+      enabled: detect
