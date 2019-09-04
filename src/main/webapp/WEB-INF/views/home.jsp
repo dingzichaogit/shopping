@@ -8,9 +8,9 @@
 <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet">
     <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
     <!--<link rel="stylesheet" href="/css/common.css">-->
-    <link rel="stylesheet" href="/font/iconfont.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/font/iconfont.css">
     <!--<link rel="stylesheet" href="css/supplier-mes.css">-->
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css">
 </head>
 <style>
 </style>

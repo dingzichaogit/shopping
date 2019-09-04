@@ -1,29 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <title>掌方圆商城管理后台</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css">
     <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet">
     <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
-    <link rel="stylesheet" href="/font/iconfont.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/font/iconfont.css">
 </head>
-<script src="/js/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 <body>
 <div class="head">
     <div class="title">掌方圆商城管理后台</div>
     <div class="right1">
 
         <span class="iconfont icon-yonghu"></span>
-        <span>Admin</span>
-        <a href="login.jsp" style="color: white">
+        <span><shiro:principal/></span>
+        <a href="<%=request.getContextPath()%>/quitcontroller/quit" style="color: white">
             <span class="iconfont icon-tuichu"></span>
             <span>退出</span>
         </a>
     </div>
 </div>
+
+
+
 
 <ul class="left11">
     <li>
@@ -35,6 +39,8 @@
         </a>
         <ul></ul>
     </li>
+    <shiro:hasRole name="管理员">
+  <shiro:hasPermission name="banneradd">
     <li>
         <a>
             <span class="iconfont icon-shouye--dibuge-"></span>
@@ -42,15 +48,20 @@
             <span class="iconfont icon-xiangxia xx"></span>
             <span class="iconfont icon-xiangxia rotate"></span>
         </a>
+        
         <ul>
             <li>
-                <a href="/bannercontroller/select" target="right">
+                <a href="<%=request.getContextPath()%>/bannercontroller/select" target="right">
                     <span>首页banner列表</span>
                 </a>
             </li>
         </ul>
         
     </li>
+  </shiro:hasPermission>
+    </shiro:hasRole>
+
+    <shiro:hasRole name="编辑员">
     <li>
         <a>
             <span class="iconfont icon-shangpinguanli"></span>
@@ -246,10 +257,11 @@
             </li>
         </ul>
     </li>
+    </shiro:hasRole>
 </ul>
 
 <div class="right11">
-    <iframe scrolling="auto" rameborder="0" src="/indexcontroller/home" name="right" width="100%" height="100%"></iframe>
+    <iframe scrolling="auto" rameborder="0" src="<%=request.getContextPath()%>/indexcontroller/home" name="right" width="100%" height="100%"></iframe>
 </div>
 <div class="bot">
    <span>本站信息由山西哆来咪公司全权提供</span>

@@ -8,11 +8,11 @@
     <title>Title</title>
     <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet">
     <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/font/iconfont.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/font/iconfont.css">
 </head>
 <body>
-<script src="/js/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$(".sel3").val("${banner.order}");
@@ -96,7 +96,7 @@ $(function(){
     $(document).ready(function(){
     	 $('#submit').eq(0).click(function(){
                  $.ajax({
-                    url:'/bannercontroller/addp',
+                    url:'<%=request.getContextPath()%>/bannercontroller/addp',
                     type:"POST",
                     data:$('#form_2').serialize(),
                     dataType:"json",
@@ -104,7 +104,7 @@ $(function(){
                         if(data.message=="成功"){
                             $('#pos1').css({'display':'block'});
                             $('#pos2').addClass('dis-none');
-                            window.location.href="/bannercontroller/select";
+                            window.location.href="<%=request.getContextPath()%>/bannercontroller/select";
                         }else{
                             $('#pos2').css({'display':'block'});
                             $('#pos1').addClass('dis-none');
@@ -128,7 +128,7 @@ $(function(){
             
             var formData = new FormData($("#form_2")[0]);
             $.ajax({
-               url : '/bannercontroller/upload',
+               url : '<%=request.getContextPath()%>/bannercontroller/upload',
                type : "POST",
                data : formData,
                dataType : "json",

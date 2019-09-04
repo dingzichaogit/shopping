@@ -1,7 +1,0 @@
-package com.hyxy.controller;
-
-public class User {
-  public void name () {
-	  System.out.println("ls");
-  }
-}

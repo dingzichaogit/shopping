@@ -8,18 +8,18 @@
  <title>Title</title>
     <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet">
     <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/font/iconfont.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/font/iconfont.css">
   </head>
 <body>
-<script src="/js/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 <div class="box">
   <c:forEach items="${info}" var="obj">
     <div class="control-group control-group1">
         <label class="control-label"><s>*</s>图片：</label>
         <img src="<%=request.getContextPath()%>/serverimg/${obj.path}" id="yushow" class="sh2"/>
     </div>
-    <form action="/bannercontroller/updates" method="post">
+    <form action="<%=request.getContextPath()%>/bannercontroller/updates" method="post">
     <input type="text" id="file"  value="上传一个文件">
     <input type="file" class="jtt" onclick="" style="background: #880000;">
     

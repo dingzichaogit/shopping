@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,13 +28,40 @@ import com.hyxy.utils.upload2;
 public class Banner {
     @Autowired
     private BannerService BannerService;
-	@RequestMapping("skip")
-	public String Skip() {
-		return "banner";
+    public static boolean Role(String role) {
+		Subject subject=SecurityUtils.getSubject();
+		System.out.println(subject.hasRole(role));
+		if (subject.hasRole(role)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+    public static boolean Power(String power) {
+    	Subject subject =SecurityUtils.getSubject();
+    	
+    	System.out.println(subject.isPermitted(power));
+    	if (subject.isPermitted(power)) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	@RequestMapping("add")
 	public String Add() {
-		return "banner-add";
+		
+		Subject subject=SecurityUtils.getSubject();
+		
+		if (Banner.Role("管理员")) {
+			if (Banner.Power("banneradd")) {
+				return "banner-add";
+			}else {
+				return "redirect:/logincontroller/skip";
+			}
+		} else {
+			return "redirect:/logincontroller/skip";
+		}
+		
 		
 	}
 	@RequestMapping("upload")
@@ -48,56 +77,64 @@ public class Banner {
 	@RequestMapping("addp")
 	@ResponseBody
 	public Map<String, String> Addp(@RequestParam Map<String, Object> map) {
-		System.out.println(map.get("id"));
-		System.out.println(map.get("path"));
-		System.out.println(map.get("url"));
-		System.out.println(map.get("orders"));
-		System.out.println(map.get("starts"));
-		System.out.println(map.get("title"));
-	   BannerService.insert(map);
-	   Map<String, String> map2=new HashMap<String, String>();
-	    map2.put("message", "成功");
-		
-	
+		 Map<String, String> map2=new HashMap<String, String>();
+				BannerService.insert(map);
+			    map2.put("message", "成功");  
 		return map2;
-		
 	}
 	@RequestMapping("select")
 	
 	public String select(Map<String, Object> map) {
-		
-	List<Picture> list=BannerService.select();
-	map.put("banner", list);
-	
-		return "banner";
-		
+		if (Banner.Role("管理员")) {
+			if (Banner.Power("bannerselect")) {
+				List<Picture> list=BannerService.select();
+				map.put("banner", list);
+				
+					return "banner";
+			} else {
+				return "redirect:/logincontroller/skip";
+			}
+		} else {
+			return "redirect:/logincontroller/skip";
+		}
 	}
 	
 	
 	@RequestMapping(value = "update/{id}")
 	public String UpDate(@PathVariable int id,Map<String, Object> map) {
-		
-		List<Picture> list=BannerService.selectid(id);
-		for (Picture picture : list) {
-			System.out.println(picture.getTitle());
-			System.out.println(picture.getUrl());
+		if (Banner.Role("管理员")) {
+			if (Banner.Power("banneredit")) {
+				List<Picture> list=BannerService.selectid(id);
+				
+				map.put("info", list);
+				return "banner-edit";
+			} else {
+				return "redirect:/logincontroller/skip";
+			}
+		} else {
+			return "redirect:/logincontroller/skip";
 		}
 		
-		map.put("info", list);
-		return "banner-edit";
 	}
 	
 	@RequestMapping(value = "delete/{id}")
 	public String Delete(@PathVariable int id) {
+		if (Banner.Role("管理员")) {
+			if (Banner.Power("bannerdelete")) {
+				BannerService.delete(id);
+				return "forward:/bannercontroller/select";
+			} else {
+				return "redirect:/logincontroller/skip";
+			}
+		} else {
+			return "redirect:/logincontroller/skip";
+		}
 		
-		BannerService.delete(id);
-		return "forward:/bannercontroller/select";
 	}
 	@RequestMapping("updates")
 	public String UpDates(@RequestParam Map<String, Object> map) {
+				BannerService.update(map);
+				return "forward:/bannercontroller/select";
 		
-		BannerService.update(map);
-		
-		return "forward:/bannercontroller/select";
 	}
 }

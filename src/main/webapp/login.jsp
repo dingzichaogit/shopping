@@ -61,8 +61,6 @@
             pass=false;
             if($(this).val().trim()===''){
                 that.innerText='密码不能为空！'
-            }else if(!reg2.test($(this).val())){
-                that.innerText='密码请以字母开头';
             }else if($(this).val().length<=5||$(this).val().length>=20){
                 that.innerText='密码长度在5-20之间';
             }else{
@@ -74,7 +72,7 @@
         $('.submit').eq(0).click(function(){
             if(pass===true&&name===true){
                 $.ajax({
-                    url:'/logincontroller/login',
+                    url:'<%=request.getContextPath()%>/logincontroller/login',
                     type:"POST",
                     data:$('#form1').serialize(),
                     dataType:"json",
@@ -83,7 +81,7 @@
                     	console.log(data.message)
                         if(data.message=="成功"){
                             $('#password').siblings('.error').get(0).innerText='提交成功！';
-                            window.location.href="/indexcontroller/index";
+                            window.location.href="<%=request.getContextPath()%>/indexcontroller/index";
                         }else{
                             $('#password').siblings('.error').get(0).innerText='提交失败！';
                         }

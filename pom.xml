@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>springBoot</groupId>
-	<artifactId>sb1</artifactId>
+	<artifactId>shoppingback</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>sb1</name>
@@ -60,6 +60,15 @@
          <artifactId>tomcat-embed-jasper</artifactId>
          <scope>provided</scope>
       </dependency>
+    
+     <!-- shiro所需架包 -->
+      <dependency>
+         <groupId>org.apache.shiro</groupId>
+         <artifactId>shiro-spring</artifactId>
+         <version>1.4.0</version>
+      </dependency>
+     
+      
 	</dependencies>
 
 	<build>

@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet">
     <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/font/iconfont.css">
-    <script src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/font/iconfont.css">
+    <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 </head>
 <body>
 ${banner}
@@ -31,7 +31,7 @@ ${banner}
 
     <div class="span95">
     <table cellspacing="0" class="table table-head-bordered table-bordered">
-        <a href="/bannercontroller/add">
+        <a href="<%=request.getContextPath()%>/bannercontroller/add">
             <div class="s-btn">
                 <span style="color: black">新增</span>
             </div>
@@ -61,7 +61,7 @@ ${banner}
      			 	<td><span class="iconfont icon-cuoconverted"></span></td>
 	            </c:if>
 	            <td>${obj.title}</td>
-	            <td><a href="/bannercontroller/update/${obj.id}">编辑</a> <a href="/bannercontroller/delete/${obj.id}">删除</a></td>
+	            <td><a href="<%=request.getContextPath()%>/bannercontroller/update/${obj.id}">编辑</a> <a href="<%=request.getContextPath()%>/bannercontroller/delete/${obj.id}">删除</a></td>
 	        </tr>
         </c:forEach>
 

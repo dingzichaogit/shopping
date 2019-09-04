@@ -3,6 +3,7 @@ package com.hyxy.dao;
 import com.hyxy.entity.User;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.ibatis.annotations.Mapper;
 @Mapper
@@ -19,7 +20,15 @@ public interface UserMapper {
 
 
 
-	List<User> selectUser(Map<String, String> map);
+	User selectUser(Map<String, String> map);
+
+
+
+	User selectu(String username);
+
+	Set<String> getrole(String username);
+
+	Set<String> getPermission(String username);
 
 	
 

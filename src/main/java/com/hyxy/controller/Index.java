@@ -1,5 +1,7 @@
 package com.hyxy.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Index {
 
 	@RequestMapping("index")
-	public String Index() {
+	public String Index(HttpServletRequest request) {
 		return "index";
 	}
 	@RequestMapping("home")

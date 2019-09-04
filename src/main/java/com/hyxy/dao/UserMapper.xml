@@ -40,5 +40,16 @@
   <select id="selectUser" resultType="com.hyxy.entity.User">
   select * from user where username=#{username} and password=#{password}
   </select>
+   <select id="selectu" resultType="com.hyxy.entity.User">
+  select * from user where username=#{username} 
+  </select>
   
+  <select id="getrole" resultType="String">
+  select rolename from user,role where username=#{username} and user.roleid=role.id 
+  </select>
+  
+  
+  <select id="getPermission" resultType="String">
+  SELECT powername from user ,power,role,userpower where username=#{username} and user.roleid =role.id and role.id=userpower.roleid AND userpower.powerid=power.id
+  </select>
 </mapper>

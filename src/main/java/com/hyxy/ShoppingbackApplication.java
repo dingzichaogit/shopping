@@ -4,14 +4,14 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-
-@SpringBootApplication
+ 
+@SpringBootApplication 
 @ComponentScan(basePackages = {"com.hyxy.*"})
 @MapperScan("com.hyxy.dao")
-public class Sb1Application {  
+public class ShoppingbackApplication {  
 
 	public static void main(String[] args) {
-		SpringApplication.run(Sb1Application.class, args);
+		SpringApplication.run(ShoppingbackApplication.class, args);
 	}
     
 }
